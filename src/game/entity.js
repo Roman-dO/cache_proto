@@ -4,7 +4,8 @@ class Entity {
 
     modules = {
         drawing: null,
-        clickable: null
+        clickable: null,
+        inventory: null,
     };
 
     pressed = {};
@@ -58,8 +59,9 @@ class Entity {
     }
 
     constructor(x, y) {
-        this.modules.drawing = new Drawing(this, x, y);
+        this.modules.drawing   = new Drawing(this, x, y);
         this.modules.clickable = new Clickable(this);
+        this.modules.inventory = new Inventory(this);
         Entity.list.push(this);
     }
 }
