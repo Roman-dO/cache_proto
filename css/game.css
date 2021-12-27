@@ -1,0 +1,27 @@
+.game {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: lightgreen;
+}
+
+.game * {
+    position: absolute;
+}
+
+.my-player {
+    text-align: center;
+
+
+
+}
+
+.entity {
+    width: 30px;
+    height: 30px;
+
+    background: antiquewhite;
+
+}
