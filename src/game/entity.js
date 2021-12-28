@@ -56,12 +56,13 @@ class Entity {
     }
     update() {
         this.moving_update();
+        for (let module of Object.values(this.modules)) if (module && module.update) module.update()
     }
 
     constructor(x, y) {
         this.modules.drawing   = new Drawing(this, x, y);
         this.modules.clickable = new Clickable(this);
-        this.modules.inventory = new Inventory(this);
+        this.modules.inventory = new Inventory(this, new Item(3, 2));
         Entity.list.push(this);
     }
 }

@@ -27,10 +27,10 @@
 
     <link rel="stylesheet" href="../css/game.css">
 </head>
-<body onload="onload();">
+<body onload="onload();" oncontextmenu="return false">
     <div class="game" id="game">
         <script>
-            function CreateEntity(x, y) {
+            function CreateDrawable(x, y) {
                 let dom = document.createElement('div');
                 let dom_item = document.createElement('div');
                 dom_item.className = 'item';
@@ -42,6 +42,9 @@
 
                 dom.style.bottom = `${y}px`;
                 dom.style.left = `${x}px`;
+
+                dom_item.style = '';
+
                 game.appendChild(dom);
                 return dom;
             }

@@ -1,4 +1,5 @@
 .game {
+    overflow: hidden;
     position: absolute;
     left: 0;
     top: 0;
@@ -11,17 +12,16 @@
     position: absolute;
 }
 
-.my-player {
-    text-align: center;
-
-
-
-}
-
 .entity {
     width: 30px;
     height: 30px;
 
     background: antiquewhite;
-
 }
+
+.player {
+    border: lightcoral 1px solid;
+    border-radius: 3px;
+}
+
+

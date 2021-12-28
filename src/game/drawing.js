@@ -1,7 +1,8 @@
 class Drawing {
     static list = [];
     dom;
-    entity;
+    owner;
+    _scale = {x: 0, y: 0};
 
     static Draw() {Drawing.list.forEach(entity => entity.Draw())}
     Draw() {
@@ -9,16 +10,22 @@ class Drawing {
     }
 
     update_dom_position() {
-        this.dom.style.left   = `${this.entity.position.x}px`;
-        this.dom.style.bottom = `${this.entity.position.y}px`;
+        this.dom.style.left   = `${this.owner.position.x + this._scale.x}px`;
+        this.dom.style.bottom = `${this.owner.position.y + this._scale.y}px`;
     }
 
-    constructor(self, x=0, y=0) {
-        this.entity = self;
+    constructor(
+        self,
+        x=0,
+        y=0,
+        xSize=30,
+        ySize=30
+    ) {
+        this.owner = self;
 
-        this.entity.position.x = x;
-        this.entity.position.y = y;
-        this.dom = CreateEntity(x, y);
+        this.dom = CreateDrawable(x, y);
+        this.dom.style.width  = `${xSize}px`;
+        this.dom.style.height = `${ySize}px`;
 
         Drawing.list.push(this);
     }

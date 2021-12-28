@@ -1,7 +1,15 @@
-
 class Inventory {
+
+    update() {
+
+    }
     items = []
     capacity = 10;
+
+    entity;
+    modules = {
+        drawing: null,
+    }
 
     give_item(landed_item) {
         if (this.is_full()) return;
@@ -28,5 +36,18 @@ class Inventory {
     }
     is_full() {
         return this.items.filter( el => el ).length >= this.capacity;
+    }
+
+    constructor(self, ...items) {
+        this.entity = self;
+        this.position = this.entity.position
+        this.modules.drawing = new Drawing(
+            this,
+            this.entity.position.x,
+            this.entity.position.y + 45,
+            100, 50);
+        this.modules.drawing._scale.x = -35;
+        this.modules.drawing._scale.y = 33;
+
     }
 }

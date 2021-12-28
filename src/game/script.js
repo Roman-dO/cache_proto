@@ -1,9 +1,10 @@
-Clickable.on_click = (target) => {
+Clickable.on_left_click = (target) => {
 
     RegisterPlayerEntity(target);
 }
 
 function onload() {
+
     RegisterPlayerEntity(new Entity(50, 50));
     new Entity(5, 100);
     new Entity(500, 100);
@@ -12,11 +13,5 @@ function onload() {
 }
 
 
-/*document.addEventListener('keypress', e => {
-    player.pressKey(e.code);
-});
-document.addEventListener('keyup', e => {
-    player.upKey(e.code);
-});*/
 
 
