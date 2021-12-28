@@ -1,17 +1,35 @@
 class Clickable {
-    static on_left_click = (self) => {};
+    static on_left_click = (self) => {
+        console.log(1)
+    };
     static on_right_click = (self) => {};
 
-    entity;
+    on_left_click  = (self) => {};
+    on_right_click = (self) => {};
 
-    constructor(self) {
-        this.entity = self;
-        this.entity.modules.drawing.dom.onclick = (e) => {
-            Clickable.on_left_click(this.entity);
+    owner;
+
+    constructor(self, handlers) {
+        this.owner = self;
+
+        if (!handlers) {
+            console.log('handlers set to default.');
+            this.on_right_click = Clickable.on_right_click;
+            this.on_left_click = Clickable.on_right_click;
         }
-        this.entity.modules.drawing.dom.oncontextmenu = (e) => {
-            Clickable.on_right_click(this.entity);
+        else {
+            if (handlers.right) this.on_right_click = handlers.right;
+            else this.on_right_click = Clickable.on_right_click;
+
+            if (handlers.left) this.on_left_click = handlers.left;
+            else this.on_left_click = Clickable.on_left_click;
         }
 
+        this.owner.modules.drawing.dom.onclick =       (e) => {
+            this.on_left_click(this.owner);
+        }
+        this.owner.modules.drawing.dom.oncontextmenu = (e) => {
+            this.on_right_click(this.owner);
+        }
     }
 }

@@ -4,6 +4,18 @@ class Drawing {
     owner;
     _scale = {x: 0, y: 0};
 
+    is_shown = true;
+    show() {
+        if (this.is_shown) return;
+        this.dom.style.display = '';
+        this.is_shown = true;
+    }
+    hide() {
+        if (!this.is_shown) return;
+        this.dom.style.display = 'none';
+        this.is_shown = false;
+    }
+
     static Draw() {Drawing.list.forEach(entity => entity.Draw())}
     Draw() {
         this.update_dom_position();
@@ -19,11 +31,12 @@ class Drawing {
         x=0,
         y=0,
         xSize=30,
-        ySize=30
+        ySize=30,
+        ...types
     ) {
         this.owner = self;
 
-        this.dom = CreateDrawable(x, y);
+        this.dom = CreateAbsoluteDrawable(x, y, ...types);
         this.dom.style.width  = `${xSize}px`;
         this.dom.style.height = `${ySize}px`;
 

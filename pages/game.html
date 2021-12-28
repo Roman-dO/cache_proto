@@ -11,9 +11,13 @@
         PHYSIC_UPDATE_RATE = 60;
     </script>
 
+    <!-- Мини-бд-оболочка для JSON -->
+    <script src="../src/game/item_finder.js"></script>
+
     <!-- Интерфейсы -->
     <script src="../src/game/clickable.js"></script>
     <script src="../src/game/drawing.js"></script>
+    <script src="../src/game/static_drawing.js"></script>
 
     <!-- Инвентарь -->
     <script src="../src/game/item.js"></script>
@@ -30,22 +34,29 @@
 <body onload="onload();" oncontextmenu="return false">
     <div class="game" id="game">
         <script>
-            function CreateDrawable(x, y) {
+            function CreateAbsoluteDrawable(x, y, ...classes) {
                 let dom = document.createElement('div');
                 let dom_item = document.createElement('div');
-                dom_item.className = 'item';
 
-                dom.appendChild(
-                    dom_item
-                );
                 dom.className = 'entity';
+
+                console.log(classes);
+                classes.filter(el => el)
+                    .forEach( el => dom.classList.add(el) );
 
                 dom.style.bottom = `${y}px`;
                 dom.style.left = `${x}px`;
 
-                dom_item.style = '';
-
                 game.appendChild(dom);
+                return dom;
+            }
+            function CreateStaticDrawable(parent, ...classes) {
+                let dom = document.createElement('div');
+                parent.appendChild(dom);
+
+                classes.filter(el => el)
+                    .forEach(el => dom.classList.add(el));
+
                 return dom;
             }
         </script>

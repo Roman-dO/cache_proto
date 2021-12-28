@@ -1,0 +1,6 @@
+{
+  "list": [
+    { "name": "tea cup", "img": { "landing": "/tea_cup.png", "inv": "/tea_cup.png"} }
+
+  ]
+}

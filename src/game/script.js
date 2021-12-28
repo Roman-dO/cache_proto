@@ -1,10 +1,11 @@
-Clickable.on_left_click = (target) => {
 
+ItemFinder.init();
+
+Clickable.on_left_click = (target) => {
     RegisterPlayerEntity(target);
 }
 
 function onload() {
-
     RegisterPlayerEntity(new Entity(50, 50));
     new Entity(5, 100);
     new Entity(500, 100);

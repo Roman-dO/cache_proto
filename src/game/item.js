@@ -36,11 +36,14 @@ class InventoryItem {
         drawing: null,
     };
 
-    position = null;
-    update_position() {
-        this.modules.dom.style.left =   `${this.position.x}px`;
-        this.modules.dom.style.bottom = `${this.position.y}px`;
+    show() {
+        this.modules.drawing.show();
     }
+    hide() {
+        this.modules.drawing.hide();
+    }
+
+    position = null;
 
     inventory;
     item;
@@ -51,6 +54,9 @@ class InventoryItem {
         this.inventory = self;
         this.item = item;
 
-        this.modules.drawing = new Drawing(this);
+        this.modules.drawing = new StaticDrawing(
+            self.modules.drawing.dom,
+            'inv-item'
+        );
     }
 }

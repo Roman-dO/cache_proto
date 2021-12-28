@@ -13,8 +13,8 @@ let player_interact = (target) => {
 };
 
 prev_handlers = {
-    'press': e => { player.pressKey(e.code); pressed[e.code] = true  },
-    'up':    e => { player.upKey(e.code);    pressed[e.code] = false },
+    'press': e => { if (player) player.pressKey(e.code); pressed[e.code] = true  },
+    'up':    e => { if (player) player.upKey(e.code);    pressed[e.code] = false },
 }
 
 // Передача управления игроку над Entity

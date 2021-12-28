@@ -61,8 +61,17 @@ class Entity {
 
     constructor(x, y) {
         this.modules.drawing   = new Drawing(this, x, y);
-        this.modules.clickable = new Clickable(this);
-        this.modules.inventory = new Inventory(this, new Item(3, 2));
+        this.modules.clickable = new Clickable(this, {
+            right: (self) => {
+                self.modules.inventory.switch();
+            },
+        });
+        this.modules.inventory = new Inventory(
+            this,
+            new Item(0, 2),
+            new Item(1, 2)
+        );
+
         Entity.list.push(this);
     }
 }
